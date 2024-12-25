@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Admin Dashboard</h2>
+<a href="{{ url_for('add_book') }}">Add a New Book</a>
+<h3>Books in the Library</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Availability</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ "Available" if book.is_available else "Checked Out" }}</td>
+            <td>
+                <!-- Only allow check-in if book is checked out -->
+                {% if not book.is_available %}
+                <form method="POST" action="{{ url_for('check_in_book', book_id=book.id) }}">
+                    <button type="submit">Check In</button>
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

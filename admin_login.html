@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Admin Login</h2>
+<form method="POST">
+    <label for="admin_key">Admin Key:</label>
+    <input type="password" name="admin_key" id="admin_key" required>
+    <button type="submit">Login</button>
+</form>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Welcome, {{ current_user.username }}!</h2>
+<h3>Your Borrowed Books:</h3>
+{% if books %}
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Due Date</th>
+            <th>Pickup Location</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.due_date }}</td>
+            <td>{{ book.pickup_location }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>You have not checked out any books yet.</p>
+{% endif %}
+{% endblock %}
